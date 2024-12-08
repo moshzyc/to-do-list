@@ -23,5 +23,31 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/list/moshe
+GET http://localhost:3000/user
 Content-Type: application/json
+
+###
+
+POST http://localhost:3000/user/signup
+Content-Type: application/json
+
+{
+    "username":"moshe",
+    "password": "123456"
+}
+
+###
+
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+    "username":"moshe",
+    "password": "123456"
+}
+
+###
+
+GET http://localhost:3000/user/info
+Content-Type: application/json
+Cookie:access_token=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzU1ODA0ODU2MGY1MTM0NzBhZTg4NDkiLCJpYXQiOjE3MzM2NjU5MTMsImV4cCI6MTczNjI1NzkxM30.o1hvGBqC7PCrknIYsAF0A0DJF8xwn-sYZJ7KHrSZkag; Path=/; HttpOnly; Secure; SameSite=None

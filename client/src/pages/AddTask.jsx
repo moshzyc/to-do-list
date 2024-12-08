@@ -1,15 +1,26 @@
-import React, { useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Header } from "../components/Header"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { UserContext } from "../contexts/UserContextProvider"
 
 export const AddTask = () => {
     const navigate = useNavigate()
+      const { user } = useContext(UserContext)
+
   const [formData, setFormData] = useState({
     username: "",
     title: "",
     task: "",
   })
+  useEffect(() => {
+    if (user) {
+      setFormData((prevData) => ({ ...prevData, username: user.username }))
+    } else {
+      navigate("/login")
+    }
+  }, [user, navigate])
+
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -31,21 +42,11 @@ export const AddTask = () => {
             onSubmit={onSubmit}
             action=""
           >
-            <label htmlFor="username">username:</label>
-            <input
-              type="text"
-              id="username"
-              className="w-[80%] rounded-md border border-black p-1"
-              onChange={(e) =>
-                setFormData({ ...formData, [e.target.name]: e.target.value })
-              }
-              name="username"
-              required
-            />
             <label htmlFor="title">title:</label>
             <input
               type="text"
               id="title"
+              value={formData.title}
               className="w-[80%] rounded-md border border-black p-1"
               onChange={(e) =>
                 setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -54,7 +55,8 @@ export const AddTask = () => {
             />
             <label htmlFor="task">task:</label>
             <textarea
-            id="task"
+              id="task"
+              value={formData.task}
               className="rounded-md border border-black p-1"
               onChange={(e) =>
                 setFormData({ ...formData, [e.target.name]: e.target.value })

@@ -1,0 +1,27 @@
+POST  http://localhost:3000/list/add
+Content-Type: application/json
+
+{
+    "title": "a",
+    "task":"task for exempel 6",
+    "username":"moshe"
+}
+
+###
+
+DELETE   http://localhost:3000/list/6751e5be8d7db2305cc8c75d
+Content-Type: application/json
+
+###
+
+PUT    http://localhost:3000/list/6752bb17c33c2a041ad05bae
+Content-Type: application/json
+
+{
+    "completed": false
+}
+
+###
+
+GET http://localhost:3000/list/moshe
+Content-Type: application/json
